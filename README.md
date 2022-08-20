@@ -1,8 +1,10 @@
-# VRChat Elixire
+# VRChat Elixir
 
 # VRChat API Library for Elixir
 
 An Elixir client to interact with the unofficial VRChat API. Supports all REST calls specified in the [API specification](https://github.com/vrchatapi/specification).
+
+This package has its own documentation available on HexDocs, but it is recommended to also refer to the main [VRChat API documentation](https://vrchatapi.github.io/). 
 
 ## Disclaimer
 
@@ -26,18 +28,15 @@ mix do deps.get, compile
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `vrchat` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `vrchat` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:vrchat, "~> 0.1.0"}]
+  [{:vrchat, "~> 1.7.2"}]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/vrchat](https://hexdocs.pm/vrchat).
+Documentation can be found at [https://hexdocs.pm/vrchat](https://hexdocs.pm/vrchat).
 
 
 ## Configuration

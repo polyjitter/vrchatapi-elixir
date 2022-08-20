@@ -2,14 +2,24 @@ defmodule VRChat.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :vrchat,
-     version: "1.7.2",
-     elixir: "~> 1.10",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     package: package(),
-     description: "A VRChat API wrapper generated from OpenAPI bindings.",
-     deps: deps()]
+    [
+      app: :vrchat,
+      version: "1.7.2",
+      elixir: "~> 1.10",
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      package: package(),
+      deps: deps(),
+
+      name: "VRChat",
+      description: "A VRChat API wrapper generated from OpenAPI bindings.",
+      source_url: "https://github.com/polyjitter/vrchatapi-elixir",
+
+      docs: [
+        main: "readme",
+        extras: ["README.md"]
+      ]
+    ]
   end
 
   # Configuration for the OTP application
@@ -41,7 +51,8 @@ defmodule VRChat.Mixfile do
     [
       name: "vrchat",
       files: ~w(.formatter.exs config lib mix.exs README* LICENSE*),
-      licenses: [""]
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/polyjitter/vrchatapi-elixir"}
     ]
   end
 end

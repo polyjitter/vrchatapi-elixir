@@ -1,5 +1,3 @@
-# VRChat Elixir
-
 # VRChat API Library for Elixir
 
 An Elixir client to interact with the unofficial VRChat API. Supports all REST calls specified in the [API specification](https://github.com/vrchatapi/specification).
@@ -43,5 +41,5 @@ Documentation can be found at [https://hexdocs.pm/vrchat](https://hexdocs.pm/vrc
 
 You can override the URL of your server (e.g. if you have a separate development and production server in your configuration files.
 ```elixir
-config :vr_chat_api_documentation, base_url: "https://api.vrchat.cloud/api/1"
+config :vrchat, base_url: "https://api.vrchat.cloud/api/1"
 ```

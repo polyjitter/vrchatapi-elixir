@@ -7,7 +7,7 @@
 # General application configuration
 import Config
 
-config :vr_chat_api_documentation, base_url: "https://api.vrchat.cloud/api/1"
+config :vrchat, base_url: "https://api.vrchat.cloud/api/1"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

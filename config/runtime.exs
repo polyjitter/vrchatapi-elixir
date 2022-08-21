@@ -7,6 +7,6 @@ import Config
 # any compile-time configuration in here, as it won't be applied.
 # The block below contains prod specific runtime configuration.
 
-if env = System.get_env("VR_CHAT_API_DOCUMENTATION_BASE_URI") do
-  config :vr_chat_api_documentation, base_url: env
+if env = System.get_env("VRCHAT_BASE_URI") do
+  config :vrchat, base_url: env
 end

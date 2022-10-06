@@ -11,8 +11,27 @@ defmodule VRChat.Connection do
 
   # Add any middleware here (authentication)
   plug Tesla.Middleware.BaseUrl, Application.get_env(:vrchat, :base_url, "https://api.vrchat.cloud/api/1")
-  plug Tesla.Middleware.Headers, [{"user-agent", "Elixir"}]
+  plug Tesla.Middleware.Headers, [{"user-agent", "vrchat-elixir"}]
   plug Tesla.Middleware.EncodeJson, engine: Poison
+
+  @doc """
+  Configure a client connection using cookie authentication
+
+  ## Parameters
+
+  - cookies (tuple list): list of cookies to include  for the connection
+
+  # Returns
+
+  Tesla.Env.client
+
+  """
+  @spec new([{String.t(), String.t()}]) :: Tesla.Env.Client
+  def new(cookies) do
+    Tesla.client([
+      {Tesla.Middleware.Headers, cookies}
+    ])
+  end
 
   @doc """
   Configure a client connection using Basic authentication.

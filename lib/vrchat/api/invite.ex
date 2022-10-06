@@ -72,6 +72,36 @@ defmodule VRChat.Api.Invite do
   end
 
   @doc """
+  Invite Myself To Instance
+  Sends self an invite to an instance
+
+  ## Parameters
+
+  - connection (VRChat.Connection): Connection to server
+  - world_id (String.t): 
+  - instance_id (String.t): 
+  - opts (KeywordList): [optional] Optional parameters
+  ## Returns
+
+  {:ok, VRChat.Model.SentNotification.t} on success
+  {:error, Tesla.Env.t} on failure
+  """
+  @spec invite_myself_to(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, VRChat.Model.SentNotification.t} | {:ok, VRChat.Model.Error.t} | {:error, Tesla.Env.t}
+  def invite_myself_to(connection, world_id, instance_id, _opts \\ []) do
+    %{}
+    |> method(:post)
+    |> url("/invite/myself/to/#{world_id}:#{instance_id}")
+    |> ensure_body()
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> evaluate_response([
+      { 200, %VRChat.Model.SentNotification{}},
+      { 401, %VRChat.Model.Error{}},
+      { 404, %VRChat.Model.Error{}}
+    ])
+  end
+
+  @doc """
   Invite User
   Sends an invite to a user. Returns the Notification of type `invite` that was sent.
 
@@ -83,10 +113,10 @@ defmodule VRChat.Api.Invite do
     - :body (InviteRequest): Slot number of the Invite Message to use when inviting a user.
   ## Returns
 
-  {:ok, VRChat.Model.Notification.t} on success
+  {:ok, VRChat.Model.SentNotification.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec invite_user(Tesla.Env.client, String.t, keyword()) :: {:ok, VRChat.Model.Notification.t} | {:ok, VRChat.Model.Error.t} | {:error, Tesla.Env.t}
+  @spec invite_user(Tesla.Env.client, String.t, keyword()) :: {:ok, VRChat.Model.SentNotification.t} | {:ok, VRChat.Model.Error.t} | {:error, Tesla.Env.t}
   def invite_user(connection, user_id, opts \\ []) do
     optional_params = %{
       :body => :body
@@ -99,7 +129,7 @@ defmodule VRChat.Api.Invite do
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
-      { 200, %VRChat.Model.Notification{}},
+      { 200, %VRChat.Model.SentNotification{}},
       { 403, %VRChat.Model.Error{}}
     ])
   end

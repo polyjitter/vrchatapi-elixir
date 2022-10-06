@@ -2,7 +2,7 @@
 
 An Elixir client to interact with the unofficial VRChat API. Supports all REST calls specified in the [API specification](https://github.com/vrchatapi/specification).
 
-This package has its own documentation available on HexDocs, but it is recommended to also refer to the main [VRChat API documentation](https://vrchatapi.github.io/). 
+This package has its own documentation available on HexDocs, but it is recommended to also refer to the main [VRChat API documentation](https://vrchatapi.github.io/).
 
 ## Disclaimer
 
@@ -36,6 +36,18 @@ end
 
 Documentation can be found at [https://hexdocs.pm/vrchat](https://hexdocs.pm/vrchat).
 
+## Usage
+```elixir
+
+tempconn = VRChat.Connection.new(username, password)
+{:ok, user, conn} = VRChat.Api.Authentication.get_current_user(tempconn)
+
+VRChat.Api.Avatars.get_avatar(conn, user.currentAvatar)
+```
+
+`get_current_user` validates the username and password, and returns a
+new client with a usable auth key sent as a cookie for usage in the
+rest of the api.
 
 ## Configuration
 

@@ -52,6 +52,7 @@ lib/vrchat/model/info_push_data_article_content.ex
 lib/vrchat/model/info_push_data_clickable.ex
 lib/vrchat/model/instance.ex
 lib/vrchat/model/instance_platforms.ex
+lib/vrchat/model/instance_short_name_response.ex
 lib/vrchat/model/instance_type.ex
 lib/vrchat/model/invite_message.ex
 lib/vrchat/model/invite_message_type.ex
@@ -77,6 +78,7 @@ lib/vrchat/model/region.ex
 lib/vrchat/model/release_status.ex
 lib/vrchat/model/request_invite_request.ex
 lib/vrchat/model/response.ex
+lib/vrchat/model/sent_notification.ex
 lib/vrchat/model/subscription.ex
 lib/vrchat/model/subscription_period.ex
 lib/vrchat/model/success.ex

@@ -96,10 +96,27 @@ defmodule VRChat.Api.Authentication do
     |> url("/auth/user")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %VRChat.Model.CurrentUser{}},
-      { 401, %VRChat.Model.Error{}}
-    ])
+    |> attach_current_user_auth()
+  end
+
+  def attach_current_user_auth({:error, response}) do
+    {401, %VRChat.Model.Error{}, response}
+  end
+
+  def attach_current_user_auth({:ok, %Tesla.Env{headers: headers}} = response) do
+    cookies =
+      headers
+      |> Enum.filter(fn {x, _} -> x == "set-cookie" end)
+      |> Enum.map(fn {"set-cookie", data} -> {"cookie", data} end)
+
+    {code, user} =
+      response
+      |> evaluate_response([
+        {200, %VRChat.Model.CurrentUser{}},
+        {401, %VRChat.Model.Error{}}
+      ])
+
+    {code, user, Connection.new(cookies)}
   end
 
   @doc """

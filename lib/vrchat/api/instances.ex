@@ -40,6 +40,34 @@ defmodule VRChat.Api.Instances do
   end
 
   @doc """
+  Get Instance By Short Name
+  Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.io/tutorials/instances/) for more information on Instances.
+
+  ## Parameters
+
+  - connection (VRChat.Connection): Connection to server
+  - short_name (String.t): 
+  - opts (KeywordList): [optional] Optional parameters
+  ## Returns
+
+  {:ok, VRChat.Model.Instance.t} on success
+  {:error, Tesla.Env.t} on failure
+  """
+  @spec get_instance_by_short_name(Tesla.Env.client, String.t, keyword()) :: {:ok, VRChat.Model.Instance.t} | {:ok, VRChat.Model.Error.t} | {:error, Tesla.Env.t}
+  def get_instance_by_short_name(connection, short_name, _opts \\ []) do
+    %{}
+    |> method(:get)
+    |> url("/instances/s/#{short_name}")
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> evaluate_response([
+      { 200, %VRChat.Model.Instance{}},
+      { 401, %VRChat.Model.Error{}},
+      { 404, %VRChat.Model.Error{}}
+    ])
+  end
+
+  @doc """
   Get Instance Short Name
   Returns an instance short name.
 
@@ -51,10 +79,10 @@ defmodule VRChat.Api.Instances do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, String.t} on success
+  {:ok, VRChat.Model.InstanceShortNameResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec get_short_name(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, VRChat.Model.Error.t} | {:ok, String.t} | {:error, Tesla.Env.t}
+  @spec get_short_name(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, VRChat.Model.InstanceShortNameResponse.t} | {:ok, VRChat.Model.Error.t} | {:error, Tesla.Env.t}
   def get_short_name(connection, world_id, instance_id, _opts \\ []) do
     %{}
     |> method(:get)
@@ -62,7 +90,7 @@ defmodule VRChat.Api.Instances do
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
-      { 200, false},
+      { 200, %VRChat.Model.InstanceShortNameResponse{}},
       { 401, %VRChat.Model.Error{}}
     ])
   end

@@ -28,4 +28,7 @@ sed -i "s/vr_chat/vrchat/g" ./.openapi-generator/FILES
 
 sed -i "s/Elixir/vrchat-elixir/" ./lib/vrchat/connection.ex
 
+# Set up cookie based authentication
+git apply --ignore-space-change --ignore-whitespace patches/cookies.patch
+
 cp ./mix.exs_bak ./mix.exs

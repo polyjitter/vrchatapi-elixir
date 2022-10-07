@@ -87,8 +87,8 @@ defmodule VRChat.Model.ApiConfig do
     :viveWindowsUrl,
     :whiteListedAssetUrls,
     :worldUpdatePeriod,
-    :"youtubedl-hash",
-    :"youtubedl-version"
+    :"player-url-resolver-hash",
+    :"player-url-resolver-version"
   ]
 
   @type t :: %__MODULE__{
@@ -170,8 +170,8 @@ defmodule VRChat.Model.ApiConfig do
     :viveWindowsUrl => String.t,
     :whiteListedAssetUrls => [String.t],
     :worldUpdatePeriod => integer(),
-    :"youtubedl-hash" => String.t,
-    :"youtubedl-version" => String.t
+    :"player-url-resolver-hash" => String.t,
+    :"player-url-resolver-version" => String.t
   }
 end
 

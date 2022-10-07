@@ -10,7 +10,6 @@ defmodule VRChat.Model.World do
   @derive [Poison.Encoder]
   defstruct [
     :assetUrl,
-    :assetUrlObject,
     :authorId,
     :authorName,
     :capacity,
@@ -27,7 +26,6 @@ defmodule VRChat.Model.World do
     :namespace,
     :occupants,
     :organization,
-    :pluginUrlObject,
     :popularity,
     :previewYoutubeId,
     :privateOccupants,
@@ -36,7 +34,6 @@ defmodule VRChat.Model.World do
     :releaseStatus,
     :tags,
     :thumbnailImageUrl,
-    :unityPackageUrlObject,
     :unityPackages,
     :updated_at,
     :version,
@@ -45,7 +42,6 @@ defmodule VRChat.Model.World do
 
   @type t :: %__MODULE__{
     :assetUrl => String.t,
-    :assetUrlObject => map(),
     :authorId => String.t,
     :authorName => String.t,
     :capacity => integer(),
@@ -62,7 +58,6 @@ defmodule VRChat.Model.World do
     :namespace => String.t,
     :occupants => integer() | nil,
     :organization => String.t,
-    :pluginUrlObject => map(),
     :popularity => integer(),
     :previewYoutubeId => String.t | nil,
     :privateOccupants => integer() | nil,
@@ -71,7 +66,6 @@ defmodule VRChat.Model.World do
     :releaseStatus => VRChat.Model.ReleaseStatus.t,
     :tags => [VRChat.Model.String.t],
     :thumbnailImageUrl => String.t,
-    :unityPackageUrlObject => map(),
     :unityPackages => [VRChat.Model.UnityPackage.t],
     :updated_at => DateTime.t,
     :version => integer(),
